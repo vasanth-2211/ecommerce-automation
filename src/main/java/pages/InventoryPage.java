@@ -24,6 +24,10 @@ public class InventoryPage extends BasePage {
     public void addToCart(){
         click(addToCardSauceLabsBackpack);
     }
+    public void addProductToCart(String productName){
+        String xpath = "//dic[text()='"+productName+"']/ancestor::div[@class='inventory_item']"+"//button";
+        click(driver.findElement(By.xpath(xpath)));
+    }
     public String getCartCount(){
        return getText(shoppingCartBadge);
     }
