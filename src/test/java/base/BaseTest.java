@@ -1,6 +1,8 @@
 package base;
-import org.testng.annotations.BeforeMethod;
+
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import utils.ConfigReader;
 
 public class BaseTest{
     DriverFactory driverFactory;
@@ -8,7 +10,8 @@ public class BaseTest{
     @BeforeMethod
     public void setup(){
         DriverFactory.initializeDriver();
-        DriverFactory.getDriver().get("https://www.saucedemo.com");
+        String url = ConfigReader.getProperty("url");
+        DriverFactory.getDriver().get(url);
 
     }
     @AfterMethod
