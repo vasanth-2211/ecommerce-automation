@@ -6,6 +6,7 @@
             <class name="tests.InvalidLoginTest"/>
             <class name="tests.AddProductToCartTest"/>
             <class name="tests.RemoveFromCartTest"/>
+            <class name="tests.CheckoutNavigationTest"/>
         </classes>
     </test>
 </suite>

@@ -12,9 +12,10 @@ public class InventoryPage extends BasePage {
     private WebElement addToCardSauceLabsBackpack;
     @FindBy (className = "shopping_cart_badge")
     private WebElement shoppingCartBadge;
-
     @FindBy(id="remove-sauce-labs-backpack")
     private WebElement removeSauceLabsBackpack;
+    @FindBy(className = "shopping_cart_link")
+    private WebElement cartIcon;
 
     public String getPageTitle() {
         return getText(pageTitle);
@@ -33,5 +34,9 @@ public class InventoryPage extends BasePage {
         return driver.findElements(
                 By.className("shopping_cart_badge")
         ).isEmpty();
+    }
+    public  CartPage goToCart(){
+        click(cartIcon);
+        return new CartPage();
     }
 }
