@@ -3,6 +3,7 @@ package tests;
 import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.InventoryPage;
 import pages.LoginPage;
 
 public class LoginTest extends BaseTest {
@@ -10,13 +11,11 @@ public class LoginTest extends BaseTest {
     public void loginTest(){
         LoginPage loginPage = new LoginPage();
 
-        loginPage.enterUsername("standard_user");
-        loginPage.enterPassword("secret_sauce");
-        loginPage.clickLoginButton();
-
-        String currentUrl = base.DriverFactory.getDriver().getCurrentUrl();
-        Assert.assertTrue(currentUrl.contains("inventory"));
-
-
+        InventoryPage inventoryPage = loginPage.login(
+                "standard_user",
+                "secret_sauce"
+        );
+        String title = inventoryPage.getPageTitle();
+        Assert.assertEquals(title, "Products");
     }
 }
