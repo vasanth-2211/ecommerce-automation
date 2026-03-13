@@ -24,15 +24,30 @@ public class InventoryPage extends BasePage {
     public void addToCart(){
         click(addToCardSauceLabsBackpack);
     }
+    private String productContainer =
+            "//div[text()='%s']/ancestor::div[@class='inventory_item']";
+
     public void addProductToCart(String productName){
-        String xpath = "//dic[text()='"+productName+"']/ancestor::div[@class='inventory_item']"+"//button";
-        click(driver.findElement(By.xpath(xpath)));
+        String addButtonXpath = String.format(productContainer+"//button[text()='Add to cart']", productName);
+        click(driver.findElement(By.xpath(addButtonXpath)));
     }
+
     public String getCartCount(){
        return getText(shoppingCartBadge);
     }
     public void removeFromCart(){
         click(removeSauceLabsBackpack);
+    }
+
+    public void removeProductFromCart(String productName){
+        String removeButtonXpath = String.format(productContainer+"//button[text()='Remove']", productName);
+    }
+    public void openProduct(String productName) {
+
+        String productXpath =
+                String.format("//div[text()='%s']", productName);
+
+        click(driver.findElement(By.xpath(productXpath)));
     }
     public boolean isCartEmpty(){
         return driver.findElements(
