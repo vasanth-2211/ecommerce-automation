@@ -8,7 +8,7 @@ import org.openqa.selenium.safari.SafariDriver;
 import utils.ConfigReader;
 
 public class DriverFactory {
-    private static WebDriver driver;
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     public static WebDriver initializeDriver() {
 
@@ -16,31 +16,31 @@ public class DriverFactory {
 
        if (browser.equalsIgnoreCase("chrome")) {
            WebDriverManager.chromedriver().setup();
-           driver = new ChromeDriver();
+           driver.set(new ChromeDriver());
        }
        else if (browser.equalsIgnoreCase("firefox")) {
            WebDriverManager.firefoxdriver().setup();
-           driver = new FirefoxDriver();
+           driver.set(new FirefoxDriver());
        }
        else if (browser.equalsIgnoreCase("safari")) {
            WebDriverManager.safaridriver().setup();
-           driver = new SafariDriver();
+           driver.set(new SafariDriver());
        }
        else {
            throw new RuntimeException("Browser not supported: " + browser);
        }
 
-        driver.manage().window().maximize();
-        return driver;
+        getDriver().manage().window().maximize();
+        return getDriver();
     }
     public static WebDriver getDriver() {
-        return driver;
+        return driver.get();
     }
 
     public static void quitDriver() {
-        if (driver != null) {
-            driver.quit();
-            driver = null;
+        if (driver.get() != null) {
+            driver.get().quit();
+            driver.remove();
         }
     }
 }
