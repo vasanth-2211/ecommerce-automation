@@ -1,4 +1,6 @@
 package base;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterMethod;
 
 public class BaseTest{
     DriverFactory driverFactory;
