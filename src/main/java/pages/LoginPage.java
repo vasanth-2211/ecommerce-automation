@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utils.WaitUtils;
 
 
 public class LoginPage extends BasePage {
@@ -13,14 +14,17 @@ public class LoginPage extends BasePage {
     private WebElement loginButton;
 
     public void enterUsername(String user) {
+        WaitUtils.waitUntilElementIsVisible(usernameField);
         usernameField.sendKeys(user);
     }
 
     public void enterPassword(String pass) {
+        WaitUtils.waitUntilElementIsVisible(passwordField);
         passwordField.sendKeys(pass);
     }
 
     public void clickLoginButton() {
+        WaitUtils.waitUntilElementClickable(loginButton);
         loginButton.click();
     }
 

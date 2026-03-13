@@ -13,9 +13,6 @@ public class BaseTest{
         String url = ConfigReader.getProperty("url");
         DriverFactory.getDriver().get(url);
 
-
-
-
     }
     @AfterMethod
     public void teardown(){
