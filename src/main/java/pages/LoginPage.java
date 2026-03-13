@@ -12,6 +12,9 @@ public class LoginPage extends BasePage {
     @FindBy(id = "login-button")
     private WebElement loginButton;
 
+    @FindBy (css = "[data-test='error']")
+    private WebElement errorMessage;
+
     public void enterUsername(String user) {
         type(usernameField, user);
     }
@@ -31,5 +34,9 @@ public class LoginPage extends BasePage {
         clickLoginButton();
         return new InventoryPage();
     }
+    public String getErrorMessage(){
+        return errorMessage.getText();
+    }
+
 }
 
