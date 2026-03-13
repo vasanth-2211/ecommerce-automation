@@ -9,6 +9,6 @@ public class InventoryPage extends BasePage {
     private WebElement pageTitle;
 
     public String getPageTitle() {
-        return pageTitle.getText();
+        return getText(pageTitle);
     }
 }
