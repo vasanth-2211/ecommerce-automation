@@ -8,6 +8,7 @@
             <class name="tests.RemoveFromCartTest"/>
             <class name="tests.CheckoutNavigationTest"/>
             <class name="tests.AddMultipleProductsTest"/>
+            <class name="tests.CheckoutFlowTest"/>
         </classes>
     </test>
 </suite>
