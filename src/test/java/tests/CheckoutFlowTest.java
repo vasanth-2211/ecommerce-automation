@@ -20,7 +20,7 @@ public class CheckoutFlowTest extends BaseTest {
         CartPage cartPage = inventoryPage.goToCart();
         CheckOutPage checkOutPage = cartPage.clickCheckout();
 
-        Assert.assertEquals(checkOutPage.getCheckOutTitle(),
+        Assert.assertEquals(checkOutPage.getCheckoutTitle(),
                 "Checkout: Your Information");
         checkOutPage.fillCheckoutInformation(
                 "John",

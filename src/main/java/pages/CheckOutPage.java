@@ -4,6 +4,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CheckOutPage extends BasePage {
+    @FindBy(className = "title")
+    private WebElement checkoutTitle;
     @FindBy(id = "first-name")
     private WebElement firstNameField;
     @FindBy(id = "last-name")
@@ -24,6 +26,10 @@ public class CheckOutPage extends BasePage {
     }
     public void clickContinueButton(){
         click(continueButton);
+    }
+
+    public String getCheckoutTitle(){
+        return getText(checkoutTitle);
     }
 
     public void fillCheckoutInformation(String first, String last, String zip) {
