@@ -7,10 +7,11 @@ import org.openqa.selenium.support.PageFactory;
 import utils.WaitUtils;
 
 public class BasePage {
-    protected WebDriver driver;
     public BasePage() {
-        this.driver = DriverFactory.getDriver();
-        PageFactory.initElements(this.driver, this);
+        PageFactory.initElements(DriverFactory.getDriver(), this);
+    }
+    protected WebDriver getDriver() {
+        return DriverFactory.getDriver();
     }
     protected void click(WebElement element) {
         WaitUtils.waitUntilElementClickable(element);

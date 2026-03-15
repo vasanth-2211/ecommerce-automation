@@ -13,12 +13,12 @@ public class ValidLoginTest extends BaseTest {
             dataProviderClass = TestDataProvider.class,
             groups = {"login","regression"}
     )
-    public void loginTest(){
+    public void loginTest(String username, String password){
         LoginPage loginPage = new LoginPage();
 
         InventoryPage inventoryPage = loginPage.login(
-                "standard_user",
-                "secret_sauce"
+                username,
+                password
         );
         String title = inventoryPage.getPageTitle();
         Assert.assertEquals(title, "Products");

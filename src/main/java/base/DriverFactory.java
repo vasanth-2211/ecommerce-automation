@@ -10,7 +10,10 @@ import utils.ConfigReader;
 public class DriverFactory {
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    public static WebDriver initializeDriver() {
+    public static void initializeDriver() {
+        if (driver.get() != null) {
+            return;
+        }
 
         String browser = ConfigReader.getProperty("browser");
 
@@ -31,7 +34,6 @@ public class DriverFactory {
        }
 
         getDriver().manage().window().maximize();
-        return getDriver();
     }
     public static WebDriver getDriver() {
         return driver.get();

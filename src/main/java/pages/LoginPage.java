@@ -28,7 +28,6 @@ public class LoginPage extends BasePage {
     }
 
     public InventoryPage login(String username, String password) {
-
         enterUsername(username);
         enterPassword(password);
         clickLoginButton();
