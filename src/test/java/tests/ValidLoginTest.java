@@ -5,9 +5,14 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.InventoryPage;
 import pages.LoginPage;
+import utils.TestDataProvider;
 
 public class ValidLoginTest extends BaseTest {
-    @Test(groups = {"smoke"})
+    @Test(
+            dataProvider = "loginData",
+            dataProviderClass = TestDataProvider.class,
+            groups = {"login","regression"}
+    )
     public void loginTest(){
         LoginPage loginPage = new LoginPage();
 
