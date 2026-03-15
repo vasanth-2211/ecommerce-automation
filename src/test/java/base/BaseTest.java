@@ -5,16 +5,15 @@ import org.testng.annotations.BeforeMethod;
 import utils.ConfigReader;
 
 public class BaseTest{
-    DriverFactory driverFactory;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setup(){
         DriverFactory.initializeDriver();
         String url = ConfigReader.getProperty("url");
         DriverFactory.getDriver().get(url);
 
     }
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void teardown(){
         DriverFactory.quitDriver();
     }
