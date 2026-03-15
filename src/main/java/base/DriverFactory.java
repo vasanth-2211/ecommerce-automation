@@ -5,12 +5,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import utils.ConfigReader;
 
 public class DriverFactory {
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private static final Logger log = LoggerFactory.getLogger(DriverFactory.class);
+
 
     public static void initializeDriver() {
+        log.info("Initializing WebDriver");
         if (driver.get() != null) {
             return;
         }
@@ -40,6 +45,7 @@ public class DriverFactory {
     }
 
     public static void quitDriver() {
+        log.info("Quitting WebDriver");
         if (driver.get() != null) {
             driver.get().quit();
             driver.remove();
