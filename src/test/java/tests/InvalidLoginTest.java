@@ -8,7 +8,7 @@ import pages.LoginPage;
 public class InvalidLoginTest extends BaseTest {
 
 
-    @Test
+    @Test(groups = {"regression"})
     public void invalidLoginTest() {
         LoginPage loginPage = new LoginPage();
         loginPage.enterUsername("abcd");

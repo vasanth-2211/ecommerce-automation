@@ -7,7 +7,7 @@ import pages.InventoryPage;
 import pages.LoginPage;
 
 public class AddMultipleProductsTest extends BaseTest {
-   @Test
+   @Test(groups = {"regression"})
     public void addMultipleProducts() {
        LoginPage loginPage = new LoginPage();
        InventoryPage inventoryPage = loginPage.login(

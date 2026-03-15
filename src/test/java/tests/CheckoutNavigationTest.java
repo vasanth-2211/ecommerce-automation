@@ -10,7 +10,7 @@ import pages.LoginPage;
 
 public class CheckoutNavigationTest extends BaseTest {
 
-    @Test
+    @Test(groups = {"regression"})
     public void checkoutNavigationTest (){
         LoginPage loginPage = new LoginPage();
         InventoryPage inventoryPage = loginPage.login(

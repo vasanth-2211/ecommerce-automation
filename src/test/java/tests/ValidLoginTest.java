@@ -7,7 +7,7 @@ import pages.InventoryPage;
 import pages.LoginPage;
 
 public class ValidLoginTest extends BaseTest {
-    @Test
+    @Test(groups = {"smoke"})
     public void loginTest(){
         LoginPage loginPage = new LoginPage();
 

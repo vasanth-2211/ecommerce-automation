@@ -8,7 +8,7 @@ import pages.LoginPage;
 
 public class RemoveFromCartTest extends BaseTest {
 
-    @Test
+    @Test(groups = {"regression"})
     public void removeFromCart(){
         LoginPage loginPage = new LoginPage();
         InventoryPage inventoryPage = loginPage.login(

@@ -7,7 +7,7 @@ import pages.InventoryPage;
 import pages.LoginPage;
 
 public class AddProductToCartTest extends BaseTest {
-   @Test
+    @Test(groups = {"regression"})
     public void verifyAddProductToCart(){
         LoginPage loginPage = new LoginPage();
 
