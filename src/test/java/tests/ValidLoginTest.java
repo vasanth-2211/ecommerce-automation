@@ -5,15 +5,15 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.InventoryPage;
 import pages.LoginPage;
-import utils.JsonUtils;
+import utils.DataProviders;
 
 public class ValidLoginTest extends BaseTest {
-    @Test(groups = {"login","regression"})
-    public void loginTest(){
+    @Test(dataProvider = "loginUsers",
+            dataProviderClass = DataProviders.class,
+            groups = {"login","regression"}
+    )
+    public void loginTest(String username, String password) {
         LoginPage loginPage = new LoginPage();
-
-        String username = JsonUtils.getData("validUser", "username");
-        String password = JsonUtils.getData("validUser", "password");
 
         InventoryPage inventoryPage = loginPage.login(
                 username,
