@@ -3,6 +3,7 @@ package base;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.slf4j.Logger;
@@ -17,6 +18,7 @@ public class DriverFactory {
 
 
     public static void initializeDriver(String browser) {
+        boolean headless =  Boolean.parseBoolean(ConfigReader.getProperty("headless"));
         log.info("Initializing WebDriver");
         if (driver.get() != null) {
             return;
@@ -29,6 +31,13 @@ public class DriverFactory {
 
        if (browser.equalsIgnoreCase("chrome")) {
            WebDriverManager.chromedriver().setup();
+
+           ChromeOptions options = new ChromeOptions();
+           options.addArguments("--start-maximized");
+
+           if (headless) {
+               options.addArguments("--headless=new");
+           }
            driver.set(new ChromeDriver());
        }
        else if (browser.equalsIgnoreCase("firefox")) {

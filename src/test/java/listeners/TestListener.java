@@ -26,7 +26,12 @@ public class TestListener implements  ITestListener, IAnnotationTransformer {
     }
     @Override
     public void onTestSuccess(ITestResult result) {
-        ExtentTestManager.getTest().pass("Test Passed");    }
+        if(result.getMethod().getCurrentInvocationCount()>1){
+            ExtentTestManager.getTest().pass("Test passed after Retry(Flacky Test)");
+        }else {
+            ExtentTestManager.getTest().pass("Test Passed");
+        }
+    }
     @Override
     public void onTestFailure(ITestResult result) {
         String screenshotPath = ScreenshotUtils.captureScreenshot(result.getName());
