@@ -22,6 +22,7 @@
             <class name="tests.AddMultipleProductsTest"/>
             <class name="tests.CheckoutNavigationTest"/>
             <class name="tests.CheckoutFlowTest"/>
+            <class name="tests.RandomProductAddTest"/>
         </classes>
 
     </test>
