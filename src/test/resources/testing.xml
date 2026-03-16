@@ -14,16 +14,9 @@
             </run>
         </groups>
 
-        <classes>
-            <class name="tests.ValidLoginTest"/>
-            <class name="tests.InvalidLoginTest"/>
-            <class name="tests.AddProductToCartTest"/>
-            <class name="tests.RemoveFromCartTest"/>
-            <class name="tests.AddMultipleProductsTest"/>
-            <class name="tests.CheckoutNavigationTest"/>
-            <class name="tests.CheckoutFlowTest"/>
-            <class name="tests.RandomProductAddTest"/>
-        </classes>
+        <packages>
+            <package name="tests"/>
+        </packages>
 
     </test>
 
