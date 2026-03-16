@@ -40,3 +40,5 @@ test-output/
 *.png
 *.log
 target/
+.DS_Store
+.idea/
