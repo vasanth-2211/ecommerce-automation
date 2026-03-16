@@ -7,6 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.ExtentTestManager;
 
+import java.util.List;
+import java.util.Random;
+
 public class InventoryPage extends BasePage {
     private static final Logger log = LoggerFactory.getLogger(InventoryPage.class);
 
@@ -84,5 +87,25 @@ public class InventoryPage extends BasePage {
         ExtentTestManager.getTest().info("Going to cart page");
         click(cartIcon);
         return new CartPage();
+    }
+
+    public void addRandomProductToCart(){
+        log.info("Adding random product to cart");
+        ExtentTestManager.getTest().info("Fetching all products from inventory");
+        List<WebElement> products = getDriver().findElements(By.className("inventory_item"));
+        int productCount = products.size();
+        ExtentTestManager.getTest().info("Total products found: " + productCount);
+        Random random = new Random();
+        int randomProduct = random.nextInt(productCount);
+
+        WebElement selectedProduct = products.get(randomProduct);
+
+        String productName = selectedProduct.findElement(By.className("inventory_item_name")).getText();
+
+        ExtentTestManager.getTest().info("Selected product: " + productName);
+        WebElement addToCartButton = selectedProduct.findElement(By.tagName("button"));
+        click(addToCartButton);
+
+        ExtentTestManager.getTest().info("Clicking on product button");
     }
 }
