@@ -1,10 +1,10 @@
 package tests;
 
 import base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.InventoryPage;
 import pages.LoginPage;
+import utils.AssertionUtils;
 import utils.JsonUtils;
 
 public class AddMultipleProductsTest extends BaseTest {
@@ -24,7 +24,7 @@ public class AddMultipleProductsTest extends BaseTest {
        inventoryPage.addProductToCart("Sauce Labs Bolt T-Shirt");
 
        String itemsCount = inventoryPage.getCartCount();
-       Assert.assertEquals(itemsCount,"3");
+       AssertionUtils.getAssert().assertEquals(itemsCount,"3");
 
    }
 }
