@@ -14,9 +14,12 @@ public class ScreenshotUtils {
 
     public static String captureScreenshot(String testName) {
 
-        TakesScreenshot screenshot =
-                (TakesScreenshot) DriverFactory.getDriver();
+        if (DriverFactory.getDriver() == null) {
+            System.out.println("WebDriver is null. Screenshot skipped for test: " + testName);
+            return null;
+        }
 
+        TakesScreenshot screenshot = (TakesScreenshot) DriverFactory.getDriver();
         File sourceFile = screenshot.getScreenshotAs(OutputType.FILE);
 
         String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss")

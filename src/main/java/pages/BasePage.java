@@ -13,7 +13,13 @@ public class BasePage {
     private static final Logger log = LoggerFactory.getLogger(BasePage.class);
 
     public BasePage() {
-        PageFactory.initElements(DriverFactory.getDriver(), this);
+        WebDriver driver = DriverFactory.getDriver();
+
+        if (driver == null) {
+            throw new RuntimeException("WebDriver is null. Ensure driver is initialized before creating Page Objects.");
+        }
+
+        PageFactory.initElements(driver, this);
     }
     protected WebDriver getDriver() {
         return DriverFactory.getDriver();
