@@ -34,6 +34,7 @@ public class BasePage {
         log.info("Typing '{}' into element", text);
         ExtentTestManager.getTest().info("Typing into element");
         WaitUtils.waitUntilElementIsVisible(element);
+        element.clear();
         element.sendKeys(text);
     }
 

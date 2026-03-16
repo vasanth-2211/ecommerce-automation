@@ -11,16 +11,21 @@ import utils.ConfigReader;
 
 public class DriverFactory {
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private static WebDriver safariDriver = null;
+    private static final Object safariLock = new Object();
     private static final Logger log = LoggerFactory.getLogger(DriverFactory.class);
 
 
-    public static void initializeDriver() {
+    public static void initializeDriver(String browser) {
         log.info("Initializing WebDriver");
         if (driver.get() != null) {
             return;
         }
 
-        String browser = ConfigReader.getProperty("browser");
+        if (browser == null || browser.isEmpty()) {
+            browser = ConfigReader.getProperty("browser");
+        }
+        log.info("Browser selected from config: {}", browser);
 
        if (browser.equalsIgnoreCase("chrome")) {
            WebDriverManager.chromedriver().setup();
@@ -31,8 +36,13 @@ public class DriverFactory {
            driver.set(new FirefoxDriver());
        }
        else if (browser.equalsIgnoreCase("safari")) {
-           WebDriverManager.safaridriver().setup();
-           driver.set(new SafariDriver());
+           log.info("Starting Safari browser in single-thread mode");
+           synchronized (safariLock) {
+               if (safariDriver == null) {
+                   safariDriver = new SafariDriver();
+               }
+               driver.set(safariDriver);
+           }
        }
        else {
            throw new RuntimeException("Browser not supported: " + browser);
@@ -47,7 +57,16 @@ public class DriverFactory {
     public static void quitDriver() {
         log.info("Quitting WebDriver");
         if (driver.get() != null) {
-            driver.get().quit();
+            if (driver.get() instanceof SafariDriver) {
+                synchronized (safariLock) {
+                    if (safariDriver != null) {
+                        safariDriver.quit();
+                        safariDriver = null;
+                    }
+                }
+            } else {
+                driver.get().quit();
+            }
             driver.remove();
         }
     }
