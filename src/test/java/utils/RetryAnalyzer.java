@@ -12,10 +12,12 @@ public class RetryAnalyzer implements IRetryAnalyzer {
         if (retryCount < MAX_RETRIES) {
             retryCount++;
 
+            result.setAttribute("retry",true);
+
             if (ExtentTestManager.getTest() != null) {
                 ExtentTestManager
                         .getTest()
-                        .info("Retrying test - Attempt " + retryCount + " of " + MAX_RETRIES);
+                        .warning("Retrying test - Attempt " + retryCount + " of " + MAX_RETRIES);
             }
 
             return true;

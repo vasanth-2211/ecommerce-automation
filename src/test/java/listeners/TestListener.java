@@ -26,7 +26,9 @@ public class TestListener implements  ITestListener, IAnnotationTransformer {
     }
     @Override
     public void onTestSuccess(ITestResult result) {
-        if(result.getMethod().getCurrentInvocationCount()>1){
+        Object retry = result.getAttribute("retry");
+
+        if(retry != null&& (boolean)retry) {
             ExtentTestManager.getTest().pass("Test passed after Retry(Flacky Test)");
         }else {
             ExtentTestManager.getTest().pass("Test Passed");
