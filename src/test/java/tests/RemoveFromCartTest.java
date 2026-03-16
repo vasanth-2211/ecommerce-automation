@@ -5,15 +5,20 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.InventoryPage;
 import pages.LoginPage;
+import utils.JsonUtils;
 
 public class RemoveFromCartTest extends BaseTest {
 
     @Test(groups = {"regression"})
     public void removeFromCart(){
         LoginPage loginPage = new LoginPage();
+
+        String username = JsonUtils.getData("validUser", "username");
+        String password = JsonUtils.getData("validUser", "password");
+
         InventoryPage inventoryPage = loginPage.login(
-                "standard_user"
-                ,"secret_sauce"
+                username,
+                password
         );
         inventoryPage.addToCart();
         inventoryPage.removeFromCart();

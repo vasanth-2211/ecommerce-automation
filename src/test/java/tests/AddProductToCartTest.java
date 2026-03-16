@@ -5,16 +5,20 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.InventoryPage;
 import pages.LoginPage;
+import utils.JsonUtils;
 
 public class AddProductToCartTest extends BaseTest {
     @Test(groups = {"regression"})
     public void verifyAddProductToCart(){
         LoginPage loginPage = new LoginPage();
 
-       InventoryPage inventoryPage = loginPage.login(
-               "standard_user",
-               "secret_sauce"
-       );
+        String username = JsonUtils.getData("validUser", "username");
+        String password = JsonUtils.getData("validUser", "password");
+
+        InventoryPage inventoryPage = loginPage.login(
+                username,
+                password
+        );
 
        inventoryPage.addToCart();
        String itemCount = inventoryPage.getCartCount();

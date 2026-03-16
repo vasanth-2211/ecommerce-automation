@@ -7,15 +7,20 @@ import pages.CartPage;
 import pages.CheckOutPage;
 import pages.InventoryPage;
 import pages.LoginPage;
+import utils.JsonUtils;
 
 public class CheckoutNavigationTest extends BaseTest {
 
     @Test(groups = {"regression"})
     public void checkoutNavigationTest (){
         LoginPage loginPage = new LoginPage();
+
+        String username = JsonUtils.getData("validUser", "username");
+        String password = JsonUtils.getData("validUser", "password");
+
         InventoryPage inventoryPage = loginPage.login(
-                "standard_user",
-                "secret_sauce"
+                username,
+                password
         );
         inventoryPage.addToCart();
         CartPage cartPage = inventoryPage.goToCart();

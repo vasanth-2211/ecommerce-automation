@@ -7,14 +7,19 @@ import pages.CartPage;
 import pages.CheckOutPage;
 import pages.InventoryPage;
 import pages.LoginPage;
+import utils.JsonUtils;
 
 public class CheckoutFlowTest extends BaseTest {
     @Test(groups = {"checkout","regression"})
     public  void checkoutFlowTest(){
         LoginPage loginPage = new LoginPage();
+
+        String username = JsonUtils.getData("validUser", "username");
+        String password = JsonUtils.getData("validUser", "password");
+
         InventoryPage inventoryPage = loginPage.login(
-                "standard_user",
-                "secret_sauce"
+                username,
+                password
         );
         inventoryPage.addProductToCart("Sauce Labs Bolt T-Shirt");
         CartPage cartPage = inventoryPage.goToCart();

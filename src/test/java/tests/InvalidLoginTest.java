@@ -4,6 +4,7 @@ import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
+import utils.JsonUtils;
 
 public class InvalidLoginTest extends BaseTest {
 
@@ -11,8 +12,11 @@ public class InvalidLoginTest extends BaseTest {
     @Test(groups = {"regression"})
     public void invalidLoginTest() {
         LoginPage loginPage = new LoginPage();
-        loginPage.enterUsername("abcd");
-        loginPage.enterPassword("abcd");
+        String username = JsonUtils.getData("invalidUser","username");
+        String password = JsonUtils.getData("invalidUser","password");
+
+        loginPage.login(username,password);
+
         loginPage.clickLoginButton();
 
 
