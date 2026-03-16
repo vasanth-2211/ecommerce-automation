@@ -5,14 +5,18 @@ import org.testng.ITestResult;
 
 public class RetryAnalyzer implements IRetryAnalyzer {
     private int retryCount = 0;
-    private static final int maxRetries = 3;
+    private static final int MAX_RETRIES = 3;
 
     @Override
     public boolean retry(ITestResult result) {
-        if (retryCount < maxRetries) {
+        if (retryCount < MAX_RETRIES) {
             retryCount++;
 
-            ExtentTestManager.getTest().info("Retrying test: Attempt" + retryCount + " times");
+            if (ExtentTestManager.getTest() != null) {
+                ExtentTestManager
+                        .getTest()
+                        .info("Retrying test - Attempt " + retryCount + " of " + MAX_RETRIES);
+            }
 
             return true;
         }

@@ -36,7 +36,7 @@ public class TestListener implements  ITestListener, IAnnotationTransformer {
 
             try {
                 if (screenshotPath != null) {
-                    ExtentTestManager.getTest().addScreenCaptureFromPath(screenshotPath);
+                    ExtentTestManager.getTest().addScreenCaptureFromPath(screenshotPath,result.getName());
                 }
             } catch (Exception e) {
                 e.printStackTrace();
