@@ -21,7 +21,8 @@ public class TestListener implements  ITestListener, IAnnotationTransformer {
     @Override
     public void onTestStart(ITestResult result) {
         ExtentTest test = extent.createTest(result.getMethod().getMethodName());
-
+        test.assignAuthor("vazenth");
+        test.assignCategory(result.getMethod().getGroups());
         ExtentTestManager.setTest(test);
     }
     @Override
