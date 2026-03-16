@@ -7,6 +7,7 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.annotations.ITestAnnotation;
 import utils.ExtentManager;
+import utils.ExtentTestManager;
 import utils.ScreenshotUtils;
 
 import java.lang.reflect.Constructor;
@@ -19,18 +20,17 @@ public class TestListener implements  ITestListener, IAnnotationTransformer {
 
     @Override
     public void onTestStart(ITestResult result) {
-        ExtentTest extentTest = extent.createTest(result.getName());
-        test.set(extentTest);
+        ExtentTest test = extent.createTest(result.getMethod().getMethodName());
+
+        ExtentTestManager.setTest(test);
     }
     @Override
     public void onTestSuccess(ITestResult result) {
-        test.get().pass("Test passed");
-    }
+        ExtentTestManager.getTest().pass("Test Passed");    }
     @Override
     public void onTestFailure(ITestResult result) {
         String screenshotPath = ScreenshotUtils.captureScreenshot(result.getName());
-        test.get().fail(result.getThrowable());
-
+        ExtentTestManager.getTest().fail(result.getThrowable());
         try{
             test.get().addScreenCaptureFromPath(screenshotPath);
         }catch (Exception e){

@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import utils.ExtentTestManager;
 
 
 public class LoginPage extends BasePage {
@@ -20,21 +21,26 @@ public class LoginPage extends BasePage {
     private WebElement errorMessage;
 
     public void enterUsername(String user) {
+        ExtentTestManager.getTest().info("Entering username");
         log.info("Entering username");
         type(usernameField, user);
     }
 
     public void enterPassword(String pass) {
+        ExtentTestManager.getTest().info("Entering password");
         log.info("Entering password");
         type(passwordField, pass);
     }
 
     public void clickLoginButton() {
+        ExtentTestManager.getTest().info("Clicking login button");
         log.info("Clicking login button");
         click(loginButton);
     }
 
     public InventoryPage login(String username, String password) {
+        log.info("Entering username and password");
+        ExtentTestManager.getTest().info("Entering username and password");
         enterUsername(username);
         enterPassword(password);
         clickLoginButton();

@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import utils.ExtentTestManager;
 
 public class CartPage extends BasePage {
     private static final Logger log = LoggerFactory.getLogger(CartPage.class);
@@ -15,10 +16,12 @@ public class CartPage extends BasePage {
 
    public String getCartTitle(){
        log.info(cartTitle.getText());
+       ExtentTestManager.getTest().info(cartTitle.getText());
         return cartTitle.getText();
     }
     public CheckOutPage clickCheckout(){
        log.info(cartCheckoutButton.getText());
+       ExtentTestManager.getTest().info(cartCheckoutButton.getText());
     click(cartCheckoutButton);
     return new CheckOutPage();
    }

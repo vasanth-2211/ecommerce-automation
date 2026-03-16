@@ -14,11 +14,13 @@ public class WaitUtils {
 
     public static void waitUntilElementIsVisible(WebElement element) {
         log.info("Waiting for element to be visible");
+        ExtentTestManager.getTest().info("Waiting for element to be visible");
        WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(10));
        wait.until(ExpectedConditions.visibilityOf(element));
    }
    public static void waitUntilElementClickable(WebElement element) {
        log.info("Waiting for element visibility");
+       ExtentTestManager.getTest().info("Waiting for element visibility");
        WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(10));
        wait.until(ExpectedConditions.elementToBeClickable(element));
    }
