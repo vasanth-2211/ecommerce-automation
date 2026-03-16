@@ -3,6 +3,7 @@ package base;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
+import utils.AssertionUtils;
 import utils.ConfigReader;
 
 public class BaseTest{
@@ -14,7 +15,7 @@ public class BaseTest{
         log.info("Starting test setup");
 
         DriverFactory.initializeDriver(browser);
-
+        AssertionUtils.initAssertions();
         String url = ConfigReader.getProperty("url");
         DriverFactory.getDriver().get(url);
     }
@@ -22,6 +23,8 @@ public class BaseTest{
     public void teardown(){
         log.info("Closing browser");
         DriverFactory.quitDriver();
+        AssertionUtils.assertAll();
+
     }
     @BeforeSuite
     public void validateParallelExecution() {
