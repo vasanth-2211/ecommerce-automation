@@ -15,7 +15,6 @@ import java.lang.reflect.Method;
 
 public class TestListener implements  ITestListener, IAnnotationTransformer {
     private static ExtentReports extent = ExtentManager.getExtentReport();
-    private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
 
 
     @Override
@@ -31,11 +30,17 @@ public class TestListener implements  ITestListener, IAnnotationTransformer {
     @Override
     public void onTestFailure(ITestResult result) {
         String screenshotPath = ScreenshotUtils.captureScreenshot(result.getName());
-        ExtentTestManager.getTest().fail(result.getThrowable());
-        try{
-            test.get().addScreenCaptureFromPath(screenshotPath);
-        }catch (Exception e){
-            e.printStackTrace();
+
+        if (ExtentTestManager.getTest() != null) {
+            ExtentTestManager.getTest().fail(result.getThrowable());
+
+            try {
+                if (screenshotPath != null) {
+                    ExtentTestManager.getTest().addScreenCaptureFromPath(screenshotPath);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
     @Override
