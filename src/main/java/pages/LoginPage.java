@@ -47,6 +47,8 @@ public class LoginPage extends BasePage {
         return new InventoryPage();
     }
     public String getErrorMessage(){
+        ExtentTestManager.getTest().info("Fetching login error message");
+        log.info("Fetching login error message");
         return errorMessage.getText();
     }
 

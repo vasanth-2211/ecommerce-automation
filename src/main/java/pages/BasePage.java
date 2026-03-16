@@ -26,13 +26,13 @@ public class BasePage {
     }
     protected void click(WebElement element) {
         log.info("Clicking element: {}", element);
-        ExtentTestManager.getTest().info("Clicking element");
+        ExtentTestManager.getTest().info("Clicking element: " + element);
         WaitUtils.waitUntilElementClickable(element);
         element.click();
     }
     protected void type(WebElement element, String text) {
         log.info("Typing '{}' into element", text);
-        ExtentTestManager.getTest().info("Typing into element");
+        ExtentTestManager.getTest().info("Getting text from element: " + element);
         WaitUtils.waitUntilElementIsVisible(element);
         element.clear();
         element.sendKeys(text);
