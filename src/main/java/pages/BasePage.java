@@ -32,7 +32,7 @@ public class BasePage {
     }
     protected void type(WebElement element, String text) {
         log.info("Typing '{}' into element", text);
-        ExtentTestManager.getTest().info("Getting text from element: " + element);
+        ExtentTestManager.getTest().info("Typing '" + text + "' into element: " + element);
         WaitUtils.waitUntilElementIsVisible(element);
         element.clear();
         element.sendKeys(text);
