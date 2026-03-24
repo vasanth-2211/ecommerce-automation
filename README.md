@@ -97,9 +97,9 @@ Automatically retries failed tests.
 
 ------------------------------------------------------------------------
 
-## uthor
+## Author
 
-**Vasanth R**  
+**Vasanth R**
 QA Automation Engineer | Aspiring SDET
 
 ------------------------------------------------------------------------
