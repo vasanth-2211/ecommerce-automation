@@ -33,7 +33,7 @@ public class ScreenshotUtils {
             directory.mkdirs();
         }
 
-        String filePath = folderPath + "/" + testName + "_" + timestamp + ".png";
+        String filePath = folderPath + "/" + testName + "_T"+Thread.currentThread().threadId()+"_"+ timestamp + ".png";
 
         File destinationFile = new File(filePath);
 
@@ -43,6 +43,5 @@ public class ScreenshotUtils {
             e.printStackTrace();
         }
 
-        return filePath;
-    }
+        return "screenshots/" + testName + "_T"+Thread.currentThread().threadId()+"_" + timestamp + ".png";    }
 }

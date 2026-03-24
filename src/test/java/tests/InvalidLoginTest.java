@@ -1,9 +1,9 @@
 package tests;
 
 import base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
+import utils.AssertionUtils;
 import utils.JsonUtils;
 
 public class InvalidLoginTest extends BaseTest {
@@ -21,6 +21,8 @@ public class InvalidLoginTest extends BaseTest {
 
 
         String error = loginPage.getErrorMessage();
-        Assert.assertTrue(error.contains("Username and password do not match"));    }
+        AssertionUtils.getAssert().assertTrue(error.contains("Username and password do not match"));
+        AssertionUtils.assertAll();
+    }
 
 }

@@ -14,7 +14,8 @@ public class ExtentManager {
             extent = new ExtentReports();
             extent.attachReporter(reporter);
 
-            extent.setSystemInfo("Environment", "QA");
+            extent.setSystemInfo("Environment",
+                    System.getProperty("environment", "qa"));
             extent.setSystemInfo("Browser", "Chrome");
             extent.setSystemInfo("Tester", "Vasanth");
 

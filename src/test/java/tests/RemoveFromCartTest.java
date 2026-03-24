@@ -1,10 +1,10 @@
 package tests;
 
 import base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.InventoryPage;
 import pages.LoginPage;
+import utils.AssertionUtils;
 import utils.JsonUtils;
 
 public class RemoveFromCartTest extends BaseTest {
@@ -23,7 +23,7 @@ public class RemoveFromCartTest extends BaseTest {
         inventoryPage.addToCart();
         inventoryPage.removeFromCart();
 
-        Assert.assertEquals(inventoryPage.isCartEmpty(),true,"Cart is not empty after removing product");
-
+        AssertionUtils.getAssert().assertEquals(inventoryPage.isCartEmpty(),true,"Cart is not empty after removing product");
+        AssertionUtils.assertAll();
     }
 }

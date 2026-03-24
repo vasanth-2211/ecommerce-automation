@@ -1,11 +1,13 @@
 package base;
 
+import listeners.TestListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
 import utils.AssertionUtils;
 import utils.ConfigReader;
 
+@Listeners(TestListener.class)
 public class BaseTest{
     private static final Logger log = LoggerFactory.getLogger(BaseTest.class);
 
@@ -23,13 +25,12 @@ public class BaseTest{
     public void teardown(){
         log.info("Closing browser");
         DriverFactory.quitDriver();
-        AssertionUtils.assertAll();
-
     }
     @BeforeSuite
     public void validateParallelExecution() {
 
-        String browser = ConfigReader.getProperty("browser");
+        String browser = System.getProperty("browser","chrome");
+
 
         int threadCount = Integer.parseInt(
                 System.getProperty("dataproviderthreadcount", "1")

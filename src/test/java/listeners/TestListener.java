@@ -8,6 +8,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.ITestAnnotation;
 import utils.ExtentManager;
 import utils.ExtentTestManager;
+import utils.RetryAnalyzer;
 import utils.ScreenshotUtils;
 
 import java.lang.reflect.Constructor;
@@ -35,18 +36,32 @@ public class TestListener implements  ITestListener, IAnnotationTransformer {
         }
     }
     @Override
-    public void onTestFailure(ITestResult result) {
-        String screenshotPath = ScreenshotUtils.captureScreenshot(result.getName());
+    public void onTestSkipped(ITestResult result) {
 
-        if (ExtentTestManager.getTest() != null) {
-            ExtentTestManager.getTest().fail(result.getThrowable());
+        if (result.getThrowable() != null) {
+
+            String screenshotPath = ScreenshotUtils.captureScreenshot(result.getName());
+
+            ExtentTestManager.getTest().skip(result.getThrowable());
 
             try {
                 if (screenshotPath != null) {
-                    ExtentTestManager.getTest().addScreenCaptureFromPath(screenshotPath,result.getName());
+                    ExtentTestManager.getTest().addScreenCaptureFromPath(screenshotPath);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+            }
+        }
+    }
+    @Override
+    public void onTestFailure(ITestResult result) {
+        RetryAnalyzer retryAnalyzer = (RetryAnalyzer)result.getMethod().getRetryAnalyzer(result);
+        if(retryAnalyzer==null || !retryAnalyzer.retry(result)){
+        String screenshotPath = ScreenshotUtils.captureScreenshot(result.getName());
+
+        if (ExtentTestManager.getTest() != null) {
+            ExtentTestManager.getTest().fail(result.getThrowable(),com.aventstack.extentreports.MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+
             }
         }
     }

@@ -25,6 +25,7 @@ public class AddMultipleProductsTest extends BaseTest {
 
        String itemsCount = inventoryPage.getCartCount();
        AssertionUtils.getAssert().assertEquals(itemsCount,"3");
+       AssertionUtils.assertAll();
 
    }
 }

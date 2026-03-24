@@ -10,7 +10,7 @@ import utils.DataProviders;
 public class ValidLoginTest extends BaseTest {
     @Test(dataProvider = "loginUsers",
             dataProviderClass = DataProviders.class,
-            groups = {"login","regression"}
+            groups = {"login","smoke"}
     )
     public void loginTest(String username, String password) {
         LoginPage loginPage = new LoginPage();
@@ -21,5 +21,6 @@ public class ValidLoginTest extends BaseTest {
         );
         String title = inventoryPage.getPageTitle();
         AssertionUtils.getAssert().assertEquals(title,"Products","Inventory page should appear after login");
+        AssertionUtils.assertAll();
     }
 }

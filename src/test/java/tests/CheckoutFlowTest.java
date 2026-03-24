@@ -1,12 +1,12 @@
 package tests;
 
 import base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CartPage;
 import pages.CheckOutPage;
 import pages.InventoryPage;
 import pages.LoginPage;
+import utils.AssertionUtils;
 import utils.JsonUtils;
 
 public class CheckoutFlowTest extends BaseTest {
@@ -25,13 +25,14 @@ public class CheckoutFlowTest extends BaseTest {
         CartPage cartPage = inventoryPage.goToCart();
         CheckOutPage checkOutPage = cartPage.clickCheckout();
 
-        Assert.assertEquals(checkOutPage.getCheckoutTitle(),
+        AssertionUtils.getAssert().assertEquals(checkOutPage.getCheckoutTitle(),
                 "Checkout: Your Information");
         checkOutPage.fillCheckoutInformation(
                 "John",
                 "Doe",
                 "12345"
         );
+        AssertionUtils.assertAll();
     }
 
 }

@@ -1,10 +1,10 @@
 package tests;
 
 import base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.InventoryPage;
 import pages.LoginPage;
+import utils.AssertionUtils;
 import utils.JsonUtils;
 
 public class AddProductToCartTest extends BaseTest {
@@ -22,6 +22,7 @@ public class AddProductToCartTest extends BaseTest {
 
        inventoryPage.addToCart();
        String itemCount = inventoryPage.getCartCount();
-       Assert.assertEquals(itemCount,"1");
+       AssertionUtils.getAssert().assertEquals(itemCount,"1");
+       AssertionUtils.assertAll();
     }
 }
