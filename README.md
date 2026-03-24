@@ -16,14 +16,14 @@ A scalable and production-ready UI Automation Framework built using
 
 ##Features
 
-- ✅ Locator-based Page Object Model (By instead of WebElement)
-- ✅ Centralized reusable actions (BasePage)
-- ✅ Smart WaitUtils for stability
-- ✅ Extent Reports with screenshots
-- ✅ JSON Data-driven testing
-- ✅ Retry mechanism for flaky tests
-- ✅ Parallel execution (Chrome/Firefox)
-- ✅ Environment-based configuration
+- Locator-based Page Object Model (By instead of WebElement)
+- Centralized reusable actions (BasePage)
+- Smart WaitUtils for stability
+- Extent Reports with screenshots
+- JSON Data-driven testing
+- Retry mechanism for flaky tests
+- Parallel execution (Chrome/Firefox)
+- Environment-based configuration
 
 ------------------------------------------------------------------------
 
